@@ -14,18 +14,19 @@ public class Main {
         dictionary.put("человек", new String[]{"мужчина", "личность", "хомосапиенс", "индивид"});
 
         HashMap<String, String[]> dictionary2 = new HashMap<>();
-        Set<String > key = dictionary.keySet();
-        Iterator iterator = key.iterator();
+
+        Set<String > keys = dictionary.keySet();
+        Iterator<String> iterator = keys.iterator();
         while (iterator.hasNext()){
-            String keys = iterator.next().toString();
-            String [] word = dictionary.get(keys);
-            dictionary2.put(keys,word);
+            String key = iterator.next().toString();
+            String [] word = dictionary.get(key);
+            dictionary2.put(key,word);
             for (int i = 0; i < word.length ; i++) {
                 String newKey = word[i];
                 ArrayList<String> arrayList = new ArrayList<>();
                 arrayList.addAll(Arrays.asList(word));
                 arrayList.remove(newKey);
-                arrayList.add(keys);
+                arrayList.add(key);
                 String [] newValue = new String[arrayList.size()];
                 newValue = arrayList.toArray(newValue);
                 dictionary2.put(newKey,newValue);
@@ -33,14 +34,13 @@ public class Main {
 
             }
         }
+
+        System.out.println("Введите слово:");
         Scanner sc = new Scanner(System.in);
         String word = sc.nextLine();
-
         String[] words = dictionary2.get(word);
-        Random r = new Random();
-       int index = r.nextInt(words.length);
-        System.out.println(words[index]);
-
-
+        for (String e: words){
+            System.out.println(e);
+        }
     }
 }
